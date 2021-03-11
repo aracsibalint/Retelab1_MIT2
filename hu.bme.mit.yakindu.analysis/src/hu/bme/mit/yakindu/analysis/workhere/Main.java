@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.yakindu.sct.model.sgraph.State;
 import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.sgraph.Transition;
+import org.yakindu.sct.model.stext.stext.EventDefinition;
+import org.yakindu.sct.model.stext.stext.VariableDefinition;
 
 import hu.bme.mit.model2gml.Model2GML;
 import hu.bme.mit.yakindu.analysis.modelmanager.ModelManager;
@@ -49,6 +51,28 @@ public class Main {
 				}
 			}
 		}
+		
+		
+		iterator = s.eAllContents();
+		while(iterator.hasNext()) {
+			EObject content = iterator.next();
+			if(content instanceof VariableDefinition) {
+				VariableDefinition var = (VariableDefinition) content;
+				
+				System.out.println(var.getName());
+			}
+		}
+		
+		iterator = s.eAllContents();
+		while(iterator.hasNext()) {
+			EObject content = iterator.next();
+			if(content instanceof EventDefinition) {
+				EventDefinition event = (EventDefinition) content;
+				
+				System.out.println(event.getName());
+			}
+		}
+		
 		
 		// Transforming the model into a graph representation
 		String content = model2gml.transform(root);
